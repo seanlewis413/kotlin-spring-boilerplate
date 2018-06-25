@@ -13,8 +13,8 @@ class RedactAllController(val redactAllServiceImpl: RedactAllServiceImpl) {
 //    //Mapped to the url 'http://HOSTNAME:8080/greeting?name=MYNAME' GET method returns greeting based off of name valu
 //    fun greeting(@RequestParam(value = "name", defaultValue = "World") name: String) = RedactAllTestRequest("hello $name")
 
-    @PostMapping("/redactAll")
-    fun redactAll(@RequestBody redactAllRequestDto: RedactAllRequestDto): RedactAllResponseDto {
+    @PostMapping("/post")
+    fun postCustomer(@RequestBody redactAllRequestDto: RedactAllRequestDto): RedactAllResponseDto {
         return this.redactAllServiceImpl.redactAll(redactAllRequestDto)
     }
 }
