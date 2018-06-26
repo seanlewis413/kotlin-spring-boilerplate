@@ -3,16 +3,16 @@ package com.smcpartners.c2s.RedactAllRest.service
 import com.smcpartners.c2s.RedactAllRest.dto.*
 import com.smcpartners.c2s.RedactAllRest.infrastructure.DSSClient
 import org.springframework.stereotype.Service
-//import org.slf4j.Logger
-//import org.slf4j.LoggerFactory
-//import org.codehaus.jackson.map.ObjectMapper
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.codehaus.jackson.map.ObjectMapper
 
 //val log = LoggerFactory.getLogger(RedactAllServiceImpl::class.simpleName)
 
 @Service
 class RedactAllServiceImpl(val dssClient: DSSClient) : RedactAllService {
-//    val mapper = ObjectMapper()
-//    val log = LoggerFactory.getLogger(RedactAllServiceImpl::class.simpleName)
+    val mapper = ObjectMapper()
+    val log = LoggerFactory.getLogger(RedactAllServiceImpl::class.simpleName)
 
     override fun redactAll(redactAllRequestDto: RedactAllRequestDto): RedactAllResponseDto {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -56,10 +56,10 @@ class RedactAllServiceImpl(val dssClient: DSSClient) : RedactAllService {
 
         val xacmlResult = XacmlResult("PERMIT", subjectPurposeOfUse, "555", "111", pdpOb, "333")
         val dssRequest = DSSRequestDto(xacmlResult, document)
-//        log.info("DSS REQUEST START")
-//        val dssRequestString = mapper.writeValueAsString(dssRequest)
-//        log.info(dssRequestString)
-//        log.info("DSS REQUEST STOP")
+        log.info("DSS REQUEST START")
+        val dssRequestString = mapper.writeValueAsString(dssRequest)
+        log.info(dssRequestString)
+        log.info("DSS REQUEST STOP")
         val redactedResponse = dssClient.segmentDocument(dssRequest)
         //create response from redacted document
         val redactedDocument = redactedResponse.segmentedDocument
